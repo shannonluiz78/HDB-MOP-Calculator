@@ -1,40 +1,24 @@
-# Home Equity Studio V4.0 — Customer Test Build
+# Home Equity Studio V4.1 — Review & Deployment
 
-**Prepared for Luiz Lee · Huttons · CEA R057632A**
+## Contents
+- `index.html` — selected V4.1 visual homepage with user-approved casual portrait and symbol-only logo.
+- `sell-upgrade.html` — 5-step HDB Sell & Upgrade calculator based on V4.0/V3.2.2.
+- `bto-sbf.html` — separate BTO/SBF guide; no live BTO financial calculator is represented as complete.
+- `privacy.html` — customer-facing disclaimer / data-flow explanation.
+- `assets/` — the logo symbol, user photos, illustrative housing visuals and styling.
+- `robots.txt`, `sitemap.xml` — search engine discovery documents for the intended production host.
 
-## What's in this build
+## Test locally
+Extract the ZIP, preserve folder structure, then open `index.html` in a browser. For the most reliable navigation and asset loading, serve the folder using an ordinary static file server (e.g. local development server). The app requires no backend for calculator/PDF generation.
 
-- `index.html` — simple customer landing page; primary focus is HDB Sell & Upgrade.
-- `sell-upgrade.html` — five-step guided journey: HDB Sale → Your Funds → Next Home → Purchase Costs → Results.
-- `bto-sbf.html` — separate BTO/SBF information and future-planner page. The full BTO/SBF financial calculator is **not** built in V4.0.
-- `assets/home-equity-logo.webp` and `assets/luiz-lee.webp` — approved branding and advisor portrait.
-- `robots.txt`, `sitemap.xml` — proposed SEO files for the stated Vercel domain.
+## Publish
+Upload all files and the `assets/` directory to your hosting project. Preview before replacing your live `hdb-mop-calculator.vercel.app` site. Review CEA registrations and confirm the advertised phone number matches the CEA Public Register.
 
-## How to test
+## Financial methodology
+Existing HDB sale and purchase-feasibility formulas are retained from the current calculator; the V4.1 changes focus on UI, explanatory labels, PDF branding and agent information. Capital summary includes *entered* spare CPF OA as a **potential** resource; specific housing purchase CPF restrictions are modelled separately in the next-home feasibility section. Do not treat total potential capital as an approved CPF withdrawal amount.
 
-1. Extract this entire ZIP into one folder. **Keep the `assets/` folder beside the HTML files.**
-2. Open `index.html` with Chrome or Edge, then select **Start my Sell & Upgrade plan**. If your browser restricts local files, upload all files to a preview Vercel project first.
-3. Change sale price, outstanding loan, CPF refund, available cash/CPF and income. Progress through all five steps.
-4. Try Private Property, New EC, and Resale HDB; also test a zero-loan case and an insufficient-funds case.
-5. At Results, try **Mobile PDF**, **A4 PDF** and **Send my results** (WhatsApp opens with a message ready for the customer to send).
-
-## Publishing
-
-Upload **all three HTML files, both assets and SEO files** to the root of a GitHub/Vercel static site. Do not upload just `index.html`, or the calculator and branding links will fail. The canonical URLs and sitemap currently reference `https://hdb-mop-calculator.vercel.app/`; change them if publishing to a different permanent domain.
-
-This package does not update the existing live website. Test in a preview deployment before replacing the production site.
-
-## Formula continuity and limitations
-
-The three financial calculation/report scripts from V3.2.2 were carried forward. Their calculation functions, rates and financing logic were preserved. A PDF layout-only improvement increases page height for New EC mobile PDF notes to prevent footer overlap. The guided interface is new.
-
-Input values are retained only in the **browser tab's session storage** to support step navigation and refresh; no backend login or lead database is included. Avoid shared-device use for confidential financial figures. WhatsApp sends no message without the customer pressing Send.
-
-The figures remain indicative and do not establish HDB/HFE eligibility, CPF availability, IRAS reliefs, or mortgage approval. The original assumptions have not been recertified for every possible household and transaction; confirm them against MAS, HDB, CPF and IRAS before relying on a real client case.
-
-## Authoritative references
-
-- MAS macroprudential loan framework: https://www.mas.gov.sg/publications/macroprudential-policies-in-singapore
-- HDB housing loan: https://www.hdb.gov.sg/buying-a-flat/flat-grant-and-loan-eligibility/housing-loan/housing-loan-from-hdb
-- IRAS BSD: https://www.iras.gov.sg/taxes/stamp-duty/for-property/buying-or-acquiring-property/buyer%27s-stamp-duty-%28bsd%29
-- IRAS ABSD: https://www.iras.gov.sg/taxes/stamp-duty/for-property/buying-or-acquiring-property/additional-buyer%27s-stamp-duty-%28absd%29
+## Limitations
+- No bank/HFE approval or guarantee; legal, CPF and agency review required.
+- BTO/SBF page is explanatory, not a working construction timeline calculator.
+- WhatsApp messages are drafted but require customer confirmation to send.
+- The photographic property images are illustrative; they do not depict specific marketed developments.
