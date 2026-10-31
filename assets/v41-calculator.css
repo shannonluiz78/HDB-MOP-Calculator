@@ -1,0 +1,22 @@
+/* V4.1 visual enhancements; financial formulas remain in the original inline scripts. */
+:root{--v4-navy:#12274b!important;--v4-accent:#0a9d9b!important}
+body{background:#f5f8fd!important}
+.v4top,.v4-intro,.v4-progress,.v4-layout,.v4-foot,.v4faq{font-family:'DM Sans',Arial,sans-serif}
+.v4top{border-bottom:1px solid #dce6f2!important;padding:12px 0 22px!important}
+.v4-brand img{height:70px!important;width:70px!important;object-fit:cover!important;border-radius:14px!important;box-shadow:0 10px 22px #20386513}
+.v4-brand-name{font-family:'Plus Jakarta Sans',Arial,sans-serif!important;font-size:18px!important}
+.v4-links .v4-wa{background:linear-gradient(92deg,#08a778,#07aa9c)!important;color:#fff!important;border:none!important;box-shadow:0 7px 17px #00aa8b20}
+.v4-intro{background:linear-gradient(105deg,#e6f4fd,#ffffff);border:1px solid #e4edf7;border-radius:22px;padding:24px!important}
+.v4-intro h1{font-family:'Plus Jakarta Sans',Arial,sans-serif!important}
+.v4-progress button{border-radius:14px!important}
+.v4-progress button[aria-current='step']{background:#e2f9f3!important;border-color:#25b9a0!important;color:#087b69!important}
+.v4-step .panel,.v4-step .demo-panel{border-radius:19px!important}
+.v4-step h2{font-family:'Plus Jakarta Sans',Arial,sans-serif!important}
+.v4-foot{line-height:1.7}
+@media(max-width:680px){.v4-brand img{height:56px!important;width:56px!important}.v4-brand-name{font-size:13px!important}.v4-intro{padding:20px!important}.v4top{gap:8px!important}.v4-links a:not(.v4-wa){display:none!important}}
+@media(max-width:350px){.v4-brand img{height:49px!important;width:49px!important}}
+/* Contain decorative and long-valued report elements on narrow screens. */
+html,body{max-width:100%;overflow-x:clip!important}
+.v4-step,.v4-layout,.v4-aside,.result-shell,.result-panel{min-width:0;max-width:100%}
+@media(max-width:850px){.result-shell{overflow-x:clip}}
+@media(max-width:850px){.result-panel::before{display:none!important}}
