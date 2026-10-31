@@ -1,5 +1,9 @@
-# Home Equity Studio V4.1 Reference-Matched Homepage
+# Home Equity Studio V4.1.2 — Review Build
 
-This edition uses the exact user-provided approved desktop landing-page image as a faithful desktop visual layer, with accessible positioned links to the working website pages. At tablet/mobile widths it switches to responsive HTML content and photo assets. All homepage imagery is embedded in index.html so no external image files are needed to view the homepage. Other website pages retain the previous tested V4.1 calculator and BTO/SBF planning guide and may use assets from the included assets/ folder.
+1. Open `index.html` for the approved desktop homepage and responsive mobile version.
+2. The main calculator is `sell-upgrade.html` and the BTO/SBF planning page is `bto-sbf.html`.
+3. Keep the `assets/` folder alongside the HTML pages when deploying to a Vercel preview.
+4. `REGULATORY_QA_REVIEW.md` contains the source-backed corrections and important limitations.
+5. `qa_edge_results.txt` and `qa_test_console.txt` contain independent browser checks. Sample PDF outputs show review warning language.
 
-For deployment, upload ALL files and assets together. Root entry is index.html. This homepage is a design-matching implementation; since desktop typography is baked into the supplied design artwork, substantial future copy/SEO edits will require rebuilding the desktop DOM rather than changing text directly. Calculator formulas were not modified.
+**Do not overwrite the live production website without further Singapore housing/finance compliance review and testing on actual iOS Safari.**
