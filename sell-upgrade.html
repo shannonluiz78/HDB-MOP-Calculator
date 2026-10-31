@@ -422,7 +422,7 @@ html{scroll-behavior:smooth}body{background:#f5f6fc !important;color:var(--v4-te
 <div class="cap-head"><span>Your usable capital mix</span><strong id="outBarRatio">Cash 50% • CPF 50%</strong></div>
 <div aria-hidden="true" class="stacked-bar"><div class="cash" id="barCash" style="width:50%"></div><div class="cpf" id="barCpf" style="width:50%"></div></div>
 <div class="bar-legend"><span><i></i> Cash proceeds + other cash</span><span><i></i> CPF refund</span></div>
-<div class="result-tiles"><div class="mini-tile"><div class="mini-label">CPF OA refund</div><div class="mini-value mint" id="outCpfOA">S$0</div></div><div class="mini-tile"><div class="mini-label">Total usable capital (incl. extra cash)</div><div class="mini-value lavender" id="outTotalCapital">S$0</div></div></div>
+<div class="result-tiles"><div class="mini-tile"><div class="mini-label">Sale CPF OA refund</div><div class="mini-value mint" id="outCpfOA">S$0</div></div><div class="mini-tile"><div class="mini-label">Total usable capital (incl. cash + CPF)</div><div class="mini-value lavender" id="outTotalCapital">S$0</div></div></div>
 <div class="capital-note">Additional cash included: <strong id="outAdditionalCash">S$0</strong></div>
 <div class="result-divider"></div>
 <div class="loan-rows"><div class="loan-line"><span class="label">Baseline TDSR loan (before property LTV)</span><span class="value" id="outMaxLoan">S$0</span></div><div class="loan-line"><span class="label">25% of baseline purchase illustration</span><span class="value" id="outMinDownpayment">S$0</span></div></div>
@@ -569,7 +569,8 @@ html{scroll-behavior:smooth}body{background:#f5f6fc !important;color:var(--v4-te
 
             // Net Proceeds
             const netCash = price - totalDeductions;
-            const totalUsableCapital = Math.max(0, netCash) + cpf + extraCash;
+            const cpfExtra = parseFloat(readNumeric('cpfEligible')) || 0;
+            const totalUsableCapital = Math.max(0, netCash) + cpf + cpfExtra + extraCash;
 
             // Bar Ratio
             if (totalUsableCapital > 0) {
@@ -642,7 +643,7 @@ html{scroll-behavior:smooth}body{background:#f5f6fc !important;color:var(--v4-te
         // Wire both live typing and committed changes; some mobile browsers
         // dispatch "change" only after closing the number keyboard.
         function initializeCalculator() {
-            const inputIds = ['salePrice', 'outstandingLoan', 'cpfRefund', 'agentCommPct', 'legalFee', 'monthlyIncome', 'monthlyDebts', 'additionalCash', 'bankInterestRate', 'buyerAge', 'loanTenure'];
+            const inputIds = ['salePrice', 'outstandingLoan', 'cpfRefund', 'agentCommPct', 'legalFee', 'monthlyIncome', 'monthlyDebts', 'additionalCash', 'cpfEligible', 'bankInterestRate', 'buyerAge', 'loanTenure'];
             for (const id of inputIds) {
                 const input = document.getElementById(id);
                 if (!input) continue;
@@ -691,7 +692,7 @@ html{scroll-behavior:smooth}body{background:#f5f6fc !important;color:var(--v4-te
   function snapshot(){
     return {
       sale:amt('salePrice'),loan:amt('outstandingLoan'),cpf:amt('cpfRefund'),fee:amt('legalFee'),
-      comm:grab('agentCommPct').value+'%',income:amt('monthlyIncome'),debts:amt('monthlyDebts'),extraCash:amt('additionalCash'),rate:result('outStressRate'),
+      comm:grab('agentCommPct').value+'%',income:amt('monthlyIncome'),debts:amt('monthlyDebts'),extraCash:amt('additionalCash'),cpfExtra:amt('cpfEligible'),rate:result('outStressRate'),
       age:grab('buyerAge').value+' years',tenure:grab('loanTenure').value+' years',
       cash:result('outNetCash'),capital:result('outTotalCapital'),
       maxLoan:result('outMaxLoan'),cpfResult:result('outCpfOA'),
@@ -749,7 +750,7 @@ html{scroll-behavior:smooth}body{background:#f5f6fc !important;color:var(--v4-te
       [['CPF OA used + interest',data.cpf],['Existing monthly debts',data.debts]],
       [['Commission (excl. GST)',data.comm],['Loan tenure',data.tenure]],
       [['Selling legal fee',data.fee],['Buyer age (reference)',data.age]],
-      [['TDSR assessment rate',data.rate],['LTV / stamp duties','Not included']]
+      [['Existing CPF OA potentially usable',data.cpfExtra],['TDSR assessment rate',data.rate]]
     ];
     let y=582;for(const pair of pairs){d.txt(pair[0][0],40,y,11,C.muted,500);d.txt(pair[0][1],348,y,13,C.ink,800,'right');d.txt(pair[1][0],386,y,11,C.muted,500);d.txt(pair[1][1],718,y,13,C.ink,800,'right');if(y<724)d.line(39,y+11,721,y+11,'#e8edf6');y+=30;}
     // Budget callout
